@@ -1,0 +1,35 @@
+.clockContainer, 
+.titleBox
+{
+    display: flex;
+    justify-content: center;
+}
+
+#title
+{
+    font-size: 50;    
+}
+
+#clock24
+{
+    font-size: 100px;
+    border: 1px solid black;
+    padding: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 10px;
+    background-color: #b87fff;
+    box-shadow: 5px 5px 5px;
+    color:blue;
+}
+
+#clock12
+{
+    font-size: 100px;
+    border: 1px solid black;
+    padding: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 10px;
+    background-color: blue;
+    box-shadow: 5px 5px 5px;
+    color:#b87fff;
+}
