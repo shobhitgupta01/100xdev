@@ -8,6 +8,8 @@ function wait(n) {
     });
 }
 
-wait(5).then((data)=>{
-    console.log("Hello")
-})
+module.exports = wait;
+
+// wait(5).then((data)=>{
+//     console.log("Hello")
+// })

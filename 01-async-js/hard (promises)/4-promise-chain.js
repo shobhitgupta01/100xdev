@@ -1,56 +1,49 @@
 /*
- * Write 3 different functions that return promises that resolve after 1, 2, and 3 seconds respectively.
+ * Write 3 different functions that return promises that resolve after t1, t2, and t3 seconds respectively.
  * Write a function that sequentially calls all 3 of these functions in order.
- * Print out the time it takes to complete the entire operation.
+ * Return a promise chain which return the time in milliseconds it takes to complete the entire operation.
  * Compare it with the results from 3-promise-all.js
  */
 
-function waitOneSecond() {
+function wait1(t) {
     return new Promise(function(resolve){
-        setTimeout(resolve, 1000);
-    });
+        setTimeout(resolve, t*1000);
+    })
 }
 
-function waitTwoSecond() {
+function wait2(t) {
     return new Promise(function(resolve){
-        setTimeout(resolve, 2000);
-    });
+        setTimeout(resolve, t*1000);
+    })
 }
 
-function waitThreeSecond() {
+function wait3(t) {
     return new Promise(function(resolve){
-        setTimeout(resolve, 3000);
-    });
+        setTimeout(resolve, t*1000);
+    })
 }
 
-function calculateTime() {
+// async syntax
+async function calculateTime(t1, t2, t3) {
     var start = new Date().getTime();
-    waitOneSecond().then(() => {
-        console.log('one second resolved');
-        return waitTwoSecond();
-    }).then(() => {
-        console.log('two second resolved');
-        return waitThreeSecond();
-    }).then(() => {
-        console.log('three second resolved');
-        var end = new Date().getTime();
-        console.log(`Time to complete is ${end - start} milliseconds`);
-    });
-}
-
-async function calculateTime2() {
-    var start = new Date().getTime();
-     await waitOneSecond();
-     console.log('one second resolved');
-     await waitTwoSecond();
-     console.log('two second resolved');
-     await waitThreeSecond();
-     console.log('three second resolved');
+     await wait1(t1);
+     await wait2(t2);
+     await wait3(t3);
     var end = new Date().getTime();
-    console.log(`Time to complete is ${end - start} milliseconds`);
+    return end-start;
 }
 
-// calculateTime();
+// .then syntax
+function calculateTime2(t1, t2, t3) {
+    var start = new Date().getTime();
+    return wait1(t1).then(() => {
+        return wait2(t2);
+    }).then(() => {
+        return wait3(t3);
+    }).then(() => {
+        var end = new Date().getTime();
+        return end-start;
+    });
+}
 
-calculateTime2();
-
+module.exports = calculateTime;
