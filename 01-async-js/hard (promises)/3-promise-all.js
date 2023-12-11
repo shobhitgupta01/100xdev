@@ -21,7 +21,7 @@ function wait3(t) {
         setTimeout(resolve, t*1000);
     })
 }
-
+// Promise.all executes them simultaneously
 function calculateTime(t1, t2, t3) {
     var p1 = wait1(t1);
     var p2 = wait2(t2);
