@@ -1,5 +1,5 @@
 // Middleware for handling auth
-const Admin = require('../db/index');
+const {Admin} = require('../db/index');
 
 async function adminMiddleware(req, res, next) {
     // Implement admin auth logic
@@ -7,8 +7,9 @@ async function adminMiddleware(req, res, next) {
     const username = req.headers.username;
     const password = req.headers.password;
 
-    const admin_found = await Admin.findOne({'username':username})
+    const admin_found = await Admin.findOne({'username': username})
     if(admin_found && admin_found.password === password){
+        console.log(`${username} authenticated`);
         next();
     }
     else{
@@ -16,8 +17,6 @@ async function adminMiddleware(req, res, next) {
             error: "Authentication failed"
         })
     }
-
-
 }
 
 module.exports = adminMiddleware;
