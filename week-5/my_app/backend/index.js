@@ -20,7 +20,8 @@ app.post('/user', async (req, res) => {
   const parsedPayload = createUser.safeParse(createPayload);
   if (!parsedPayload.success) {
     res.status(411).json({
-      msg: "Incorrect inputs"
+      msg: "Incorrect inputs",
+      errors: parsedPayload.error
     });
     return;
   }
